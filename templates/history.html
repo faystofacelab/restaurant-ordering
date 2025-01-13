@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUISINE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .order-list {
+            margin-top: 20px;
+        }
+        .order-list div {
+            background-color: #ffeb3b;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Commandes Envoyées</h1>
+
+    <div class="order-list" id="order-list">
+        <!-- Liste des commandes envoyées -->
+        {% for table, orders in orders.items() %}
+            <div>
+                <h3>Table {{ table }}</h3>
+                {% for order in orders %}
+                    <p>{{ order.order }} (x{{ order.quantity }}) - {{ order.status }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <h3>Commandes à emporter</h3>
+        <ul>
+            {% for order in takeaway_orders %}
+                <li>{{ order.order }} (x{{ order.quantity }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
